@@ -1,0 +1,10 @@
+{
+	"generate": "Generate",
+	"lowercaseLetter": "Lowercase Letter",
+	"uppercaseLetter": "Uppercase Letter",
+	"arabicNumeral": "Arabic Numeral",
+	"specialCharacter": "Special Character",
+	"length": "Length",
+	"randomPassword": "Random Password",
+	"passwordClipboard": "The password has been copied to the clipboard"
+}

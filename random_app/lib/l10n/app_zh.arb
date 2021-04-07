@@ -1,0 +1,10 @@
+{
+	"generate": "生成",
+	"lowercaseLetter": "小写字母",
+	"uppercaseLetter": "大写字母",
+	"arabicNumeral": "阿拉伯数字",
+	"specialCharacter": "特殊字符",
+	"length": "长度",
+	"randomPassword": "随机密码",
+	"passwordClipboard": "密码已经复制到剪贴板"
+}
