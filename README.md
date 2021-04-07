@@ -2,6 +2,8 @@
 
 RandomApp是用Flutter语言实现的随机密码生成器。
 
+演示地址：https://wangqianhong.com/tools/random/
+
 [Flutter（一）| Linux开发环境--wqh博客](https://wangqianhong.com/2021/02/flutter%ef%bc%88%e4%b8%80%ef%bc%89-linux%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83/)
 
 [Flutter（二）| Win开发环境搭建--wqh博客](https://wangqianhong.com/2021/03/flutter%ef%bc%88%e4%ba%8c%ef%bc%89-win%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba/)
