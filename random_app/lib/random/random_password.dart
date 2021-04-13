@@ -34,6 +34,7 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
         canvasColor: Color(0xFFF8F8FF),
       ),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(AppLocalizations.of(context).randomPassword),
           centerTitle: true,
