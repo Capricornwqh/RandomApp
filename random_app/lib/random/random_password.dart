@@ -17,8 +17,6 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
   bool _number = true;
   bool _speical = true;
 
-  final _messangerKey = GlobalKey<ScaffoldMessengerState>();
-
   static const String LowerCase = 'abcdefghijklmnopqistuvwxyz';
   static const String UpperCase = 'ABCDEFGHIJKLMNOPQISTUVWXYZ';
   static const String ArabicNumeral = '01234567890123456789';
@@ -26,30 +24,21 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Random',
-      scaffoldMessengerKey: _messangerKey,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        canvasColor: Color(0xFFF8F8FF),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context).randomPassword),
+        centerTitle: true,
       ),
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text(AppLocalizations.of(context).randomPassword),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: <Widget>[
-            _switchLowercase(),
-            _switchUppercase(),
-            _switchNumber(),
-            _switchSpecial(),
-            _textLength(),
-            _textShow(),
-            _buttonGenerate(),
-          ],
-        ),
+      body: Column(
+        children: <Widget>[
+          _switchLowercase(),
+          _switchUppercase(),
+          _switchNumber(),
+          _switchSpecial(),
+          _textLength(),
+          _textShow(),
+          _buttonGenerate(),
+        ],
       ),
     );
   }
@@ -118,11 +107,12 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
   }
 
   void _snackBar() {
-    _messangerKey.currentState.removeCurrentSnackBar();
-    _messangerKey.currentState.showSnackBar(
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.blue,
-        content: Text(AppLocalizations.of(context).passwordClipboard, textAlign: TextAlign.center),
+        content: Text(AppLocalizations.of(context).passwordClipboard,
+            textAlign: TextAlign.center),
       ),
     );
   }
@@ -172,7 +162,10 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
                       hintText: 'Enter length',
                     ),
                     keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(2)
+                    ],
                     onChanged: (text) {
                       _length = text;
                     },
