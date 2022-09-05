@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 class RandomPasswordPage extends StatefulWidget {
   @override
@@ -26,7 +26,7 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).randomPassword),
+        title: Text('randomPassword'.tr),
         centerTitle: true,
       ),
       body: Column(
@@ -95,7 +95,7 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
         color: Colors.blue,
         textColor: Colors.white,
         child: Text(
-          AppLocalizations.of(context).generate,
+          'generate'.tr,
           style: TextStyle(fontSize: 18),
         ),
         onPressed: () {
@@ -107,12 +107,27 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
   }
 
   void _snackBar() {
-    ScaffoldMessenger.of(context).removeCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.blue,
-        content: Text(AppLocalizations.of(context).passwordClipboard,
-            textAlign: TextAlign.center),
+    Get.closeCurrentSnackbar();
+    Get.snackbar(
+      '',
+      'passwordClipboard'.tr,
+      backgroundColor: Colors.blue,
+      snackPosition: SnackPosition.BOTTOM,
+      margin: const EdgeInsets.all(10),
+      titleText: const Text(
+        '',
+        style: TextStyle(
+          fontSize: 0,
+        ),
+      ),
+      messageText: Text(
+        'passwordClipboard'.tr,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w800,
+          fontSize: 20,
+        ),
       ),
     );
   }
@@ -139,170 +154,93 @@ class _RandomPasswordPageState extends State<RandomPasswordPage> {
   }
 
   Widget _textLength() {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Text(
-                  AppLocalizations.of(context).length,
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-              Container(
-                child: SizedBox(
-                  width: 100,
-                  height: 40,
-                  child: TextField(
-                    controller: TextEditingController(text: _length),
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      hintText: 'Enter length',
-                    ),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(2)
-                    ],
-                    onChanged: (text) {
-                      _length = text;
-                    },
-                  ),
-                ),
-              ),
-            ],
-          )
+    return ListTile(
+      leading: Text(
+        'length'.tr,
+        style: TextStyle(fontSize: 17),
+      ),
+      title: TextField(
+        controller: TextEditingController(text: _length),
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+          hintText: 'Enter length',
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(2)
         ],
+        onChanged: (text) {
+          _length = text;
+        },
       ),
     );
   }
 
   Widget _switchLowercase() {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 150,
-                height: 30,
-                child: Text(
-                  AppLocalizations.of(context).lowercaseLetter,
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-              Container(
-                child: Switch(
-                  value: _lowercase,
-                  onChanged: (value) {
-                    setState(() {
-                      _lowercase = value;
-                    });
-                  },
-                ),
-              ),
-            ],
-          )
-        ],
+    return ListTile(
+      title: Text(
+        'lowercaseLetter'.tr,
+        style: TextStyle(fontSize: 17),
+      ),
+      trailing: Switch(
+        value: _lowercase,
+        onChanged: (value) {
+          setState(() {
+            _lowercase = value;
+          });
+        },
       ),
     );
   }
 
   Widget _switchUppercase() {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 150,
-                height: 30,
-                child: Text(
-                  AppLocalizations.of(context).uppercaseLetter,
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-              Container(
-                child: Switch(
-                  value: _uppercase,
-                  onChanged: (value) {
-                    setState(() {
-                      _uppercase = value;
-                    });
-                  },
-                ),
-              ),
-            ],
-          )
-        ],
+    return ListTile(
+      title: Text(
+        'uppercaseLetter'.tr,
+        style: TextStyle(fontSize: 17),
+      ),
+      trailing: Switch(
+        value: _uppercase,
+        onChanged: (value) {
+          setState(() {
+            _uppercase = value;
+          });
+        },
       ),
     );
   }
 
   Widget _switchNumber() {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 150,
-                height: 30,
-                child: Text(
-                  AppLocalizations.of(context).arabicNumeral,
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-              Container(
-                child: Switch(
-                  value: _number,
-                  onChanged: (value) {
-                    setState(() {
-                      _number = value;
-                    });
-                  },
-                ),
-              ),
-            ],
-          )
-        ],
+    return ListTile(
+      title: Text(
+        'arabicNumeral'.tr,
+        style: TextStyle(fontSize: 17),
+      ),
+      trailing: Switch(
+        value: _number,
+        onChanged: (value) {
+          setState(() {
+            _number = value;
+          });
+        },
       ),
     );
   }
 
   Widget _switchSpecial() {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 150,
-                height: 30,
-                child: Text(
-                  AppLocalizations.of(context).specialCharacter,
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-              Container(
-                child: Switch(
-                  value: _speical,
-                  onChanged: (value) {
-                    setState(() {
-                      _speical = value;
-                    });
-                  },
-                ),
-              ),
-            ],
-          )
-        ],
+    return ListTile(
+      title: Text(
+        'specialCharacter'.tr,
+        style: TextStyle(fontSize: 17),
+      ),
+      trailing: Switch(
+        value: _speical,
+        onChanged: (value) {
+          setState(() {
+            _speical = value;
+          });
+        },
       ),
     );
   }
